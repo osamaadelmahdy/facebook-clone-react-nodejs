@@ -1,0 +1,70 @@
+.login {
+  height: 100vh;
+  width: 100vw;
+  background-color: #f0f2f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loginWrapper {
+  width: 70%;
+  height: 70%;
+  display: flex;
+}
+.loginRight,
+.loginLeft {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.loginLeft h1 {
+  font-size: 50px;
+  font-weight: bold;
+  color: #1775ee;
+  margin-bottom: 15px;
+}
+.loginLeft p {
+  font-size: 25px;
+}
+.loginRight div {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 10px;
+  justify-content: space-between;
+  padding: 20px;
+  border-radius: 10px;
+  margin-left: 20px;
+  border: 1px solid rgb(214, 214, 214);
+}
+.loginRight div input {
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid rgb(172, 172, 172);
+  font-size: 18px;
+  outline: none;
+  padding: 0 20px;
+  margin: 10px 20px;
+}
+.loginRight div button {
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  background-color: #1775ee;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 10px 20px;
+}
+.loginRight div button:last-of-type {
+  background-color: #42b72a;
+  width: 60%;
+  align-self: center;
+}
+.loginRight div span {
+  text-align: center;
+  color: #1775ee;
+  margin: 10px 20px;
+}
