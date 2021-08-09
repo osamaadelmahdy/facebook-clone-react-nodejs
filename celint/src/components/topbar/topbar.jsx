@@ -3,12 +3,15 @@ import "./topbar.css";
 
 import Person from "@material-ui/icons/Person";
 import { Chat, Notifications, Search } from "@material-ui/icons";
+import { Link } from "react-router-dom";
 
 export default function Topbar() {
   return (
     <div className="topbarContainer">
       <div className="topbarLift">
-        <span className="logo">OsamaSocial</span>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <span className="logo">OsamaSocial</span>
+        </Link>
       </div>
       <div className="topbarCenter">
         <div className="searchbar">
@@ -22,8 +25,19 @@ export default function Topbar() {
       </div>
       <div className="topbarRight">
         <div className="topbarLinks">
-          <span className="topbarLink">HomePage</span>
-          <span className="topbarLink">TimeLine</span>
+          <span className="topbarLink">
+            <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+              HomePage
+            </Link>
+          </span>
+          <span className="topbarLink">
+            <Link
+              to="/profile/1"
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              TimeLine
+            </Link>
+          </span>
         </div>
         <div className="topbarIcons">
           <div className="topbarIcon">
@@ -39,10 +53,12 @@ export default function Topbar() {
             <span className="topBarIconBadge">1</span>
           </div>
         </div>
-        <img className="topbarImg" src="/assets/person/1.jpg" alt="" />
-        {/* <div className="topbarName">
-          <span className="topbarNameName">osama</span>
-        </div> */}
+        <Link
+          to="/profile/1"
+          style={{ textDecoration: "none", color: "white" }}
+        >
+          <img className="topbarImg" src="/assets/person/1.jpg" alt="" />
+        </Link>
       </div>
     </div>
   );
