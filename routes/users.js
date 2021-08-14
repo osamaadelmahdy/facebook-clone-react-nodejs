@@ -27,6 +27,7 @@ router.put("/:id", async (req, res) => {
     return res.json("you can not update user");
   }
 });
+
 // delete user
 router.delete("/:id", async (req, res) => {
   if (req.body.id == req.params.id) {
@@ -40,6 +41,7 @@ router.delete("/:id", async (req, res) => {
     return res.json("you can not delete user");
   }
 });
+
 // get user
 router.get("/:id", async (req, res) => {
   try {
@@ -50,6 +52,7 @@ router.get("/:id", async (req, res) => {
     return res.json(err);
   }
 });
+
 // follow user
 router.put("/:id/follow", async (req, res) => {
   const { id: curentUserId } = req.body;

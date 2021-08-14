@@ -9,6 +9,7 @@ import {
   School,
   WorkOutline,
 } from "@material-ui/icons";
+import { Link } from "react-router-dom";
 import "./sidebar.css";
 
 function Sidbar() {
@@ -18,7 +19,11 @@ function Sidbar() {
         <ul className="sidebarList">
           <li className="sidebarListItem">
             <RssFeed className="sidebarIcon" />
-            <span className="sidebarListItemText">Feed</span>
+            <span className="sidebarListItemText">
+              <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+                Feed
+              </Link>
+            </span>
           </li>
           <li className="sidebarListItem">
             <Chat className="sidebarIcon" />

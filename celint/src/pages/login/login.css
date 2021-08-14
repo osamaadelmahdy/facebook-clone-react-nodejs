@@ -57,6 +57,7 @@
   font-weight: bold;
   cursor: pointer;
   margin: 10px 20px;
+  text-align: center;
 }
 .loginRight div button:last-of-type {
   background-color: #42b72a;

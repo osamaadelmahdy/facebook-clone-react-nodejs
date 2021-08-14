@@ -21,8 +21,10 @@
   width: 100%;
   border-radius: 10px;
   margin: 30px 0;
-  height: 300px;
+  height: 200px;
   object-fit: contain;
+  /* box-shadow: 0 0 7px 0px #3f3f3f63; */
+  border: 1px solid #555;
 }
 .rightbarFriendList {
   display: flex;
