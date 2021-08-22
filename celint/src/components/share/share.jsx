@@ -1,23 +1,22 @@
 import { EmojiEmotions, Label, PermMedia, Room } from "@material-ui/icons";
-import { useContext, useRef, useState } from "react";
+import { useContext, useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import "./share.css";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 
-export default function Share({ location }) {
+export default function Share({ profile }) {
+  console.log(profile);
   const descRef = useRef(null);
   const { user } = useContext(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(descRef.current.value);
     const newPost = {
       userId: user._id,
       desc: descRef.current.value,
     };
     axios.post(`http://localhost:8080/api/posts/`, newPost);
     descRef.current.value = "";
-    // location.reload();
   };
 
   return (

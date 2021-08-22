@@ -6,16 +6,17 @@ import Topbar from "../../components/topbar/topbar";
 import "./profile.css";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
+import { useParams } from "react-router-dom";
 export default function Profile() {
+  const { id } = useParams();
+  console.log(id);
   const [user, setUser] = useState([]);
   const { user: logedUser } = useContext(AuthContext);
 
   useEffect(() => {
-    console.log(logedUser);
+    // console.log(logedUser);
     const fetchUser = async () => {
-      const userData = await axios.get(
-        `http://localhost:8080/api/users/${logedUser._id}`
-      );
+      const userData = await axios.get(`http://localhost:8080/api/users/${id}`);
       console.log("user", userData.data);
       setUser(userData.data);
     };
@@ -48,8 +49,8 @@ export default function Profile() {
             </div>
           </div>
           <div className="profileRightBottom">
-            <Feed profile />
-            <Rightbar Profile />
+            <Feed profile={user} />
+            <Rightbar Profile={user} />
           </div>
         </div>
       </div>

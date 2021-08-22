@@ -18,8 +18,8 @@ export default function Post({ post }) {
         `http://localhost:8080/api/users/${post.userId}`
       );
       setUser(userData.data);
-      console.log(userData.data);
-      console.log(post.likes.includes(userData.data._id));
+      // console.log(userData.data);
+      // console.log(post.likes.includes(userData.data._id));
       if (post.likes.includes(userData.data._id)) {
         setIsLiked(true);
       }
@@ -44,7 +44,7 @@ export default function Post({ post }) {
           <>
             <div className="postTop">
               <div className="postTopLeft">
-                <Link to={`/profile/${user.username}`}>
+                <Link to={`/profile/${user._id}`}>
                   <img
                     src={user.profilePicture || "/assets/no-avatar.jpg"}
                     alt=""

@@ -27,7 +27,14 @@ function Sidbar() {
           </li>
           <li className="sidebarListItem">
             <Chat className="sidebarIcon" />
-            <span className="sidebarListItemText">Chats</span>
+            <span className="sidebarListItemText">
+              <Link
+                to="/messenger"
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                Chat
+              </Link>
+            </span>
           </li>
           <li className="sidebarListItem">
             <PlayCircleFilled className="sidebarIcon" />

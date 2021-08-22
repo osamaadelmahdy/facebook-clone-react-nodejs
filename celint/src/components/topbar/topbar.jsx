@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./topbar.css";
 
 import Person from "@material-ui/icons/Person";
 import { Chat, Notifications, Search } from "@material-ui/icons";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Topbar() {
+  const { user } = useContext(AuthContext);
+
   return (
     <div className="topbarContainer">
       <div className="topbarLift">
@@ -32,7 +35,7 @@ export default function Topbar() {
           </span>
           <span className="topbarLink">
             <Link
-              to="/profile/1"
+              to={`/profile/${user._id}`}
               style={{ textDecoration: "none", color: "white" }}
             >
               TimeLine
@@ -54,10 +57,10 @@ export default function Topbar() {
           </div>
         </div>
         <Link
-          to="/profile/1"
+          to={`/profile/${user._id}`}
           style={{ textDecoration: "none", color: "white" }}
         >
-          <img className="topbarImg" src="/assets/person/1.jpg" alt="" />
+          <img className="topbarImg" src={user.profilePicture} alt="" />
         </Link>
       </div>
     </div>
