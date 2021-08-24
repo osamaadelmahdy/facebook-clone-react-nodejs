@@ -34,6 +34,7 @@
 .chatBox .boxWrapper {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 .chatBox .top {
   overflow: auto;
@@ -70,4 +71,12 @@
 }
 .chatOnline .onlineWrapper {
   overflow: auto;
+}
+.noConversation {
+  font-weight: bold;
+  font-size: 40px;
+  color: #cccccc;
+  position: absolute;
+  top: 40%;
+  cursor: default;
 }

@@ -28,9 +28,18 @@ export default function Login() {
         </div>
         <form onSubmit={handleClick} className="loginRight">
           <div>
-            <p>aya@osama.com</p>
-            <input type="email" placeholder="Email" ref={email} />
-            <input type="text" placeholder="Password" ref={password} />
+            <input
+              type="email"
+              placeholder="Email"
+              ref={email}
+              value="aya@osama.com"
+            />
+            <input
+              type="text"
+              placeholder="Password"
+              ref={password}
+              value="123"
+            />
             <button type="submit">{isFeching ? "Loading.." : "Log in"}</button>
             <span>Forgot password?</span>
             <button>

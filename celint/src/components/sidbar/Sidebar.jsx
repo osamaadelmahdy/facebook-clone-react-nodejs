@@ -17,24 +17,24 @@ function Sidbar() {
     <div className="sidebar">
       <div className="sidebarWrapper">
         <ul className="sidebarList">
-          <li className="sidebarListItem">
-            <RssFeed className="sidebarIcon" />
-            <span className="sidebarListItemText">
-              <Link to="/" style={{ textDecoration: "none", color: "black" }}>
-                Feed
-              </Link>
-            </span>
+          <li>
+            <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+              <div className="sidebarListItem">
+                <RssFeed className="sidebarIcon" />
+                <span className="sidebarListItemText">Feed</span>
+              </div>
+            </Link>
           </li>
-          <li className="sidebarListItem">
-            <Chat className="sidebarIcon" />
-            <span className="sidebarListItemText">
-              <Link
-                to="/messenger"
-                style={{ textDecoration: "none", color: "black" }}
-              >
-                Chat
-              </Link>
-            </span>
+          <li>
+            <Link
+              to="/messenger"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <div className="sidebarListItem">
+                <Chat className="sidebarIcon" />
+                <span className="sidebarListItemText">Chat</span>
+              </div>
+            </Link>
           </li>
           <li className="sidebarListItem">
             <PlayCircleFilled className="sidebarIcon" />

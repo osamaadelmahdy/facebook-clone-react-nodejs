@@ -23,8 +23,8 @@ export default function App() {
           {user ? <Redirect to="/" /> : <Register />}
         </Route>
         <Route path="/messenger">
-          {/* {!user ? <Redirect to="/" /> : <Messenger />} */}
-          <Messenger />
+          {!user ? <Redirect to="/" /> : <Messenger />}
+          {/* <Messenger /> */}
         </Route>
         <Route path="/profile/:id">
           <Profile />

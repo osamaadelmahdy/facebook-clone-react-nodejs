@@ -25,10 +25,15 @@
 .sidebarListItem {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  padding: 10px 5px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.sidebarListItem:hover {
+  background-color: lightgray;
 }
 .sidebarIcon {
-  margin-right: 50px;
+  margin-right: 30px;
 }
 
 .sidebarButton {
@@ -38,6 +43,7 @@
   border-radius: 5px;
   font-weight: bold;
   background-color: rgb(209, 209, 209);
+  margin-top: 10px;
 }
 .sidebarHr {
   margin: 20px 0;

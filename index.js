@@ -8,6 +8,8 @@ const cors = require("cors");
 const usersRouter = require("./routes/users");
 const auth = require("./routes/auth");
 const postsRouter = require("./routes/posts");
+const conversationRouter = require("./routes/conversations");
+const messageRouter = require("./routes/messages");
 
 const app = express();
 dotenv.config();
@@ -20,6 +22,8 @@ app.use(morgan("common"));
 app.use("/api/users", usersRouter);
 app.use("/api/auth", auth);
 app.use("/api/posts", postsRouter);
+app.use("/api/conversation", conversationRouter);
+app.use("/api/message", messageRouter);
 
 mongoose
   .connect(process.env.MONGO_URL, {
