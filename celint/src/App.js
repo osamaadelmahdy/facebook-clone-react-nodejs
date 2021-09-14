@@ -34,6 +34,5 @@ export default function App() {
         </Route>
       </Switch>
     </Router>
-    // <Test />
   );
 }
