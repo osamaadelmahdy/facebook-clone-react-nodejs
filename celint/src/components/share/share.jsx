@@ -1,5 +1,11 @@
-import { EmojiEmotions, Label, PermMedia, Room } from "@material-ui/icons";
-import { useContext, useRef } from "react";
+import {
+  Cancel,
+  EmojiEmotions,
+  Label,
+  PermMedia,
+  Room,
+} from "@material-ui/icons";
+import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import "./share.css";
 import axios from "axios";
@@ -7,23 +13,49 @@ import axios from "axios";
 
 export default function Share({ profile }) {
   console.log(profile);
+  const [file, setFile] = useState(null);
   const descRef = useRef(null);
   const { user } = useContext(AuthContext);
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newPost = {
       userId: user._id,
       desc: descRef.current.value,
     };
-    axios.post(`http://localhost:8080/api/posts/`, newPost);
+
+    if (file) {
+      const data = new FormData();
+      const fileName = Date.now() + file.name;
+      data.append("name", fileName);
+      data.append("file", file);
+      newPost.img = fileName;
+      console.log("newpost", newPost);
+      try {
+        await axios.post("http://localhost:8080/api/upload", data);
+      } catch (err) {}
+    }
+
+    try {
+      await axios.post(`http://localhost:8080/api/posts/`, newPost);
+    } catch {}
     descRef.current.value = "";
+    setFile(null);
   };
 
   return (
     <div className="share">
       <form className="shareWrapper" onSubmit={handleSubmit}>
         <div className="shareTop">
-          <img src={user.profilePicture} alt="" className="shareProfileImg" />
+          <img
+            src={
+              user.profilePicture
+                ? user.profilePicture
+                : "/assets/no-avatar.jpg"
+            }
+            alt=""
+            className="shareProfileImg"
+          />
           <input
             ref={descRef}
             type="text"
@@ -32,6 +64,14 @@ export default function Share({ profile }) {
           />
         </div>
         <hr className="shareHr" />
+
+        {file && (
+          <div className="fileUpload">
+            <img src={URL.createObjectURL(file)} alt="" />
+            <Cancel className="shareCancel" onClick={() => setFile(null)} />
+          </div>
+        )}
+
         <div className="shareBottom">
           <div className="shareOptions">
             <label htmlFor="file" className="shareOption">
@@ -43,6 +83,7 @@ export default function Share({ profile }) {
                 name="file"
                 id="file"
                 accept=".png,.jpg,.jpeg"
+                onChange={(e) => setFile(e.target.files[0])}
               />
             </label>
             <div className="shareOption">

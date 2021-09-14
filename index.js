@@ -4,6 +4,9 @@ const dotenv = require("dotenv");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const cors = require("cors");
+const http = require("http");
+const path = require("path");
+const multer = require("multer");
 
 const usersRouter = require("./routes/users");
 const auth = require("./routes/auth");
@@ -14,10 +17,31 @@ const messageRouter = require("./routes/messages");
 const app = express();
 dotenv.config();
 
+app.use(express.static(path.join(__dirname, "public")));
+
 app.use(cors());
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "celint/public/images/");
+  },
+  filename: (req, file, cb) => {
+    cb(null, req.body.name);
+  },
+});
+
+const upload = multer({ storage: storage });
+
+app.post("/api/upload", upload.single("file"), (req, res) => {
+  try {
+    return res.status(200).json("File uploded successfully");
+  } catch (error) {
+    console.error("err", error);
+  }
+});
 
 app.use("/api/users", usersRouter);
 app.use("/api/auth", auth);

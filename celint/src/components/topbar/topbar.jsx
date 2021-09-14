@@ -60,7 +60,15 @@ export default function Topbar() {
           to={`/profile/${user._id}`}
           style={{ textDecoration: "none", color: "white" }}
         >
-          <img className="topbarImg" src={user.profilePicture} alt="" />
+          <img
+            className="topbarImg"
+            src={
+              user.profilePicture
+                ? user.profilePicture
+                : "/assets/no-avatar.jpg"
+            }
+            alt=""
+          />
         </Link>
       </div>
     </div>

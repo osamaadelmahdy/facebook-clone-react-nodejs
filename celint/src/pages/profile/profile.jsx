@@ -21,7 +21,7 @@ export default function Profile() {
       setUser(userData.data);
     };
     fetchUser();
-  }, []);
+  }, [id]);
 
   return (
     <>
@@ -34,12 +34,20 @@ export default function Profile() {
               <img
                 style={{}}
                 className="profileCoverImg"
-                src={user.profilePicture}
+                src={
+                  user.profilePicture
+                    ? user.profilePicture
+                    : "/assets/no-avatar.jpg"
+                }
                 alt=""
               />
               <img
                 className="profileUserImg"
-                src={user.profilePicture}
+                src={
+                  user.profilePicture
+                    ? user.profilePicture
+                    : "/assets/no-avatar.jpg"
+                }
                 alt=""
               />
             </div>

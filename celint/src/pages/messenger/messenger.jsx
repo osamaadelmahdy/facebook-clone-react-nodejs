@@ -5,6 +5,7 @@ import Messege from "../../components/messege/messege";
 import Online from "../../components/online/online";
 import Topbar from "../../components/topbar/topbar";
 import { AuthContext } from "../../context/AuthContext";
+import { io } from "socket.io-client";
 import "./messenger.css";
 
 export default function Messenger() {
@@ -13,10 +14,16 @@ export default function Messenger() {
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setnewMessage] = useState("");
-  const scrollRef = useRef();
+  const [socket, setSocket] = useState(null);
 
+  const scrollRef = useRef();
+  console.log(socket);
   console.log("currentChat", currentChat);
   console.log("messages", messages);
+
+  useEffect(() => {
+    setSocket(io("ws://localhost:8080"));
+  }, []);
 
   useEffect(() => {
     const getConversations = async () => {

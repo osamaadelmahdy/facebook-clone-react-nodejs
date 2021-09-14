@@ -98,15 +98,14 @@
 .rightbarFollowings {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 
 .rightbarFollowing {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
   cursor: pointer;
   align-items: center;
+  margin: 0 10px 10px 0;
 }
 
 .rightbarFollowingImg {
@@ -115,4 +114,18 @@
   object-fit: cover;
   border-radius: 5px;
   margin-bottom: 5px;
+}
+
+.rightBarFollow {
+  margin: 30px 0 10px 0;
+  border: none;
+  background-color: #1872f2;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  align-items: center;
+  font-size: 16px;
+  display: flex;
+  outline: none;
+  cursor: pointer;
 }

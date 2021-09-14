@@ -53,6 +53,41 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// get users
+router.get("/", async (req, res) => {
+  try {
+    const users = await User.find();
+    usersWithoutPass = [];
+    users.forEach((user) => {
+      const { password, createdAt, updatedAt, ...other } = user._doc;
+      usersWithoutPass.push(other);
+    });
+    return res.status(200).json(usersWithoutPass);
+  } catch (err) {
+    return res.json(err);
+  }
+});
+
+//get friends
+router.get("/friends/:userId", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    const friends = await Promise.all(
+      user.following.map((friendId) => {
+        return User.findById(friendId);
+      })
+    );
+    let friendList = [];
+    friends.map((friend) => {
+      const { _id, username, profilePicture } = friend;
+      friendList.push({ _id, username, profilePicture });
+    });
+    res.status(200).json(friendList);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // follow user
 router.put("/:id/follow", async (req, res) => {
   const { id: curentUserId } = req.body;
