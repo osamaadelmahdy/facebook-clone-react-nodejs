@@ -14,23 +14,42 @@ export default function Messenger() {
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setnewMessage] = useState("");
-  const [socket, setSocket] = useState(null);
+  const [arrival, setArrival] = useState(null);
+
+  const socket = useRef();
 
   const scrollRef = useRef();
-  console.log(socket);
-  console.log("currentChat", currentChat);
-  console.log("messages", messages);
 
   useEffect(() => {
-    setSocket(io("ws://localhost:8080"));
+    console.log("socket");
+    socket.current = io("ws://localhost:8900");
+    socket.current.on("getMessage", (data) => {
+      const m = {
+        sender: data.senderId,
+        text: data.text,
+        createdAt: Date.now(),
+      };
+      setArrival(m);
+    });
   }, []);
+
+  useEffect(() => {
+    if (arrival) {
+      currentChat?.members.includes(arrival.sender) &&
+        setMessages((prev) => [...prev, arrivalMessage]);
+    }
+  }, [arrival, currentChat]);
+
+  useEffect(() => {
+    socket.current.emit("addUser", logedUser._id);
+    socket.current.on("getUsers", (users) => {});
+  }, [logedUser]);
 
   useEffect(() => {
     const getConversations = async () => {
       const res = await axios.get(
         `http://localhost:8080/api/conversation/${logedUser._id}`
       );
-      console.log(res.data);
       setconversation(res.data);
     };
     getConversations();
@@ -41,7 +60,6 @@ export default function Messenger() {
       const res = await axios.get(
         `http://localhost:8080/api/message/${currentChat?._id}`
       );
-      console.log(res.data);
       setMessages(res.data);
     };
     getMessages();
@@ -58,6 +76,17 @@ export default function Messenger() {
       text: newMessage,
       conversationId: currentChat._id,
     };
+
+    const receiverId = currentChat.members.find(
+      (member) => member !== logedUser._id
+    );
+
+    socket.current.emit("sendMessage", {
+      senderId: logedUser._id,
+      receiverId: receiverId,
+      text: newMessage,
+    });
+
     try {
       const res = await axios.post(
         `http://localhost:8080/api/message/`,
@@ -82,7 +111,6 @@ export default function Messenger() {
               className="chatMenuInput"
             />
             {conversation.map((c) => {
-              console.log(c.members);
               return (
                 <div onClick={() => setCurrentChat(c)}>
                   <Conversation members={c.members} currentUser={logedUser} />
@@ -98,7 +126,10 @@ export default function Messenger() {
                 <div className="top">
                   {messages.map((m) => (
                     <div ref={scrollRef}>
-                      <Messege message={m} own={m.sender === logedUser._id} />
+                      <Messege
+                        message={m}
+                        own={m.sender === logedUser._id ? logedUser : false}
+                      />
                     </div>
                   ))}
                 </div>

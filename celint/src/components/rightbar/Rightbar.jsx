@@ -79,7 +79,7 @@ function Rightbar({ Profile }) {
         <ul className="rightbarFriendList">
           {friends.map((user) => (
             <>
-              <li className="rightbarFriend" key={user._id}>
+              <li key={user._id} className="rightbarFriend">
                 <div className="container">
                   <img src={user.profilePicture} alt="" />
                   <span className="badge"></span>

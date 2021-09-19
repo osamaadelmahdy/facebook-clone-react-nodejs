@@ -5,7 +5,7 @@ export default function Messege({ message, own }) {
   return (
     <div className={own ? "messege own" : "messege"}>
       <div className="top">
-        <img className="img" src="/assets/person/1.jpg" alt="" />
+        {own ? <img className="img" src={own.profilePicture} alt="" /> : ""}
         <p className="text">{message.text}</p>
       </div>
       <div className="bottom">{format(message.createdAt)}</div>
