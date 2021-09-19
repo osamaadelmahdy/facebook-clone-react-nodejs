@@ -36,7 +36,7 @@ export default function Messenger() {
   useEffect(() => {
     if (arrival) {
       currentChat?.members.includes(arrival.sender) &&
-        setMessages((prev) => [...prev, arrivalMessage]);
+        setMessages((prev) => [...prev, arrival]);
     }
   }, [arrival, currentChat]);
 
